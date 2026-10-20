@@ -2,6 +2,8 @@
 PondGuard - Aquaculture Water Quality Model Trainer & Audit
 Dataset Source: Mendeley Data (DOI: 10.17632/y78ty2g293.2)
 "Aquaculture - Water Quality Dataset", Veeramsetty et al.
+NOTE: This dataset consists of simulated/synthetic aquaculture parameter distributions.
+The model has NOT yet been validated on real farm sensor telemetry.
 """
 
 from pathlib import Path
@@ -87,18 +89,22 @@ def evaluate_predictions(y_true, y_pred, title=""):
 def main():
     print("=" * 70)
     print("PONDGUARD - SCIENTIFIC AUDIT & REPRODUCIBLE ML PIPELINE")
-    print("Dataset: Mendeley Data (DOI: 10.17632/y78ty2g293.2)")
+    print("Dataset: Mendeley Data (DOI: 10.17632/y78ty2g293.2) [Simulated Benchmark]")
     print("=" * 70)
 
     X, y, full_df = load_data()
 
-    print(f"\n[1] DATASET AUDIT:")
+    print(f"\n[1] DATASET AUDIT & SIMULATION ANALYSIS:")
     print(f"  Total records: {len(X)}")
     print(f"  Feature set (5): {list(X.columns)}")
     print(f"  Missing values in 5 features: {X.isnull().sum().to_dict()}")
     print("  Class distribution:")
     for cls_val, count in y.value_counts().sort_index().items():
         print(f"    Class {cls_val} ({TARGET_NAMES[cls_val]}): {count} samples ({count / len(y):.2%})")
+    print("  Dataset Simulation Notice:")
+    print("    - Temperature ranges up to 84.25°C and pH ranges from 0.0039 to 14.85.")
+    print("    - Confirms synthetic/simulated generation via parametric distributions.")
+    print("    - Model has NOT yet been validated on physical farm sensor telemetry.")
 
     # 3-way reproducible stratified split: 70% Train, 15% Validation, 15% Test
     print("\n[2] TRAIN / VALIDATION / TEST SPLIT (70% / 15% / 15% Stratified):")
