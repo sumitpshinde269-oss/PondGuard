@@ -214,6 +214,10 @@ if "pondguard_reading" in st.session_state:
 
     # AI Water Quality Assessment (Machine Learning Model)
     st.subheader("🤖 AI Water-Quality Prediction")
+    st.caption(
+        "Statistical pattern classification trained on the Mendeley Aquaculture Dataset (Veeramsetty et al., 4,300 samples). "
+        "Evaluates multi-variate parameter correlations. Kept strictly independent of the rule-based safety alerts below."
+    )
     ml_pred = ml_state.get("prediction")
     ml_err = ml_state.get("error")
 
@@ -243,6 +247,10 @@ if "pondguard_reading" in st.session_state:
         st.warning(f"⚠️ Machine Learning model unavailable: {ml_err}")
 
     st.subheader("Threshold Alert Assessment")
+    st.caption(
+        "Deterministic physiological safety screening based on established freshwater fish tolerance limits "
+        "(e.g., hypoxia DO < 3.0 mg/L, toxic ammonia > 0.5 mg/L, nitrite > 0.5 mg/L). Independent of ML statistical predictions."
+    )
 
     if alerts:
         for level, title, advice in alerts:
