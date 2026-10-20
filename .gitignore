@@ -1,4 +1,36 @@
+# Virtual Environments
 .venv/
+venv/
+env/
+ENV/
+
+# Python cache and bytecode
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+*.so
+
+# Environment variables & secrets
+.env
+.env.*
+*.key
+*.pem
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Redundant legacy models
 water_quality_model.pkl
+water_potability_model.pkl
+
+# Temporary log files
+*.log
+
